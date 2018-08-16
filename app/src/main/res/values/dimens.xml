@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="general_view_margin">16dp</dimen>
+    <dimen name="list_item_margin">8dp</dimen>
+    <dimen name="product_name_text_size">20dp</dimen>
+    <dimen name="product_info_text_size">18dp</dimen>
+    <dimen name="zero_dimen">0dp</dimen>
+    <dimen name="empty_view_header">32dp</dimen>
+    <dimen name="empty_view_text">24dp</dimen>
+    <dimen name="buy_button_padding">16dp</dimen>
+    <dimen name="order_button_padding">8dp</dimen>
+</resources>

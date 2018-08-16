@@ -1,0 +1,47 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="header_empty_view">
+        <item name="android:textSize">@dimen/empty_view_header</item>
+        <item name="android:textColor">@color/lightText</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_empty_view">
+        <item name="android:textSize">@dimen/empty_view_text</item>
+        <item name="android:textColor">@color/lightText</item>
+        <item name="android:layout_marginTop">@dimen/general_view_margin</item>
+    </style>
+
+    <style name="product_name">
+        <item name="android:textSize">@dimen/product_name_text_size</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:layout_marginTop">@dimen/list_item_margin</item>
+    </style>
+
+    <style name="product_price">
+        <item name="android:textSize">@dimen/product_info_text_size</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/lightText</item>
+        <item name="android:layout_marginBottom">@dimen/list_item_margin</item>
+    </style>
+
+    <style name="product_quantity">
+        <item name="android:textSize">@dimen/product_info_text_size</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/lightText</item>
+        <item name="android:layout_marginBottom">@dimen/list_item_margin</item>
+    </style>
+
+
+</resources>

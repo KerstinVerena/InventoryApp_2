@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/general_view_margin">
+
+    <TextView
+        android:id="@+id/prodcut_info"
+        style="@style/product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/product_information" />
+
+    <TextView
+        android:id="@+id/name_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/product_name_head" />
+
+    <EditText
+        android:id="@+id/product_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/product_name_hint"
+        android:inputType="textMultiLine" />
+
+    <TextView
+        android:id="@+id/price_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/product_price_head" />
+
+    <EditText
+        android:id="@+id/product_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/product_price_hint"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/quantity_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/product_quantity_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/raise_quantity_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add_black_32dp" />
+
+        <TextView
+            android:id="@+id/product_quantity"
+            style="@style/product_quantity"
+            android:layout_width="@dimen/zero_dimen"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="@string/product_quantity_hint"
+            android:inputType="number" />
+
+        <ImageButton
+            android:id="@+id/lower_quantity_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_remove_black_32dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/supplier_info"
+        style="@style/product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/supplier_information" />
+
+    <TextView
+        android:id="@+id/supplier_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/product_supplier_head" />
+
+    <EditText
+        android:id="@+id/product_supplier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/product_supplier_hint"
+        android:inputType="text" />
+
+    <TextView
+        android:id="@+id/supplier_contact_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/product_supplier_contact_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/product_supplier_contact"
+            android:layout_width="@dimen/zero_dimen"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="@string/product_supplier_contact_hint"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/contact_supplier_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/contactSupplierButton"
+            android:drawableBottom="@drawable/ic_local_phone_grey_24dp"
+            android:padding="@dimen/order_button_padding"
+            android:text="@string/order_product_button" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/save_product_button"
+            android:layout_width="@dimen/zero_dimen"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/save_product" />
+
+        <Button
+            android:id="@+id/delete_product_button"
+            android:layout_width="@dimen/zero_dimen"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/delete_product" />
+
+    </LinearLayout>
+
+</LinearLayout>

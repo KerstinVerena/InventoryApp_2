@@ -1,0 +1,182 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <!-- Name for the application [CHAR LIMIT=12] -->
+    <string name="app_name">Inventory App</string>
+
+    <!-- Label for the name of the product in the editor [CHAR LIMIT=30] -->
+    <string name="product_name_head">Name:</string>
+
+    <!-- Label for the price of the product in the editor [CHAR LIMIT=30] -->
+    <string name="product_price_head">Price:</string>
+
+    <!-- Label for the quantity of the product in the editor [CHAR LIMIT=30] -->
+    <string name="product_quantity_head">Quantity:</string>
+
+    <!-- Label for the supplier of the product in the editor [CHAR LIMIT=30] -->
+    <string name="product_supplier_head">Supplier Name:</string>
+
+    <!-- Label for the contact of the supplier of the product in the editor [CHAR LIMIT=30] -->
+    <string name="product_supplier_contact_head">Supplier Phone Number:</string>
+
+    <!-- Text hint for product name field in the editor [CHAR LIMIT=30] -->
+    <string name="product_name_hint">Name of the Product</string>
+
+    <!-- Text hint for price field in the editor [CHAR LIMIT=30] -->
+    <string name="product_price_hint">Price in Cent</string>
+
+    <!-- Text hint for quantity field in the editor [CHAR LIMIT=30] -->
+    <string name="product_quantity_hint">Quantity</string>
+
+    <!-- Text hint for supplier name field in the editor [CHAR LIMIT=30] -->
+    <string name="product_supplier_hint">Supplier Name</string>
+
+    <!-- Text hint for supplier contact in the editor [CHAR LIMIT=30] -->
+    <string name="product_supplier_contact_hint">Supplier Contact</string>
+
+    <!-- Label for button to open the EditActivity to add a new product. [CHAR LIMIT=20] -->
+    <string name="add_product">Add Product</string>
+
+    <!-- Label for button to save a product after it has been edited. [CHAR LIMIT=20] -->
+    <string name="save_product">Save Product</string>
+
+    <!-- Currency to displayed in the Inventory List. [CHAR LIMIT=5] -->
+    <string name="currency"> \u20ac</string>
+
+    <!-- Label for the EditActivity when a new product is insert. [CHAR LIMIT=5] -->
+    <string name="insert_new_prodcut">Add Product</string>
+
+    <!-- Label for the EditActivity when an existing product is updated. [CHAR LIMIT=5] -->
+    <string name="update_prodcut">Update Product</string>
+
+    <!-- Label for the product information section in the EditActivity [CHAR LIMIT=30] -->
+    <string name="product_information">Product Information</string>
+
+    <!-- Label for the supplier information section in the EditActivity [CHAR LIMIT=30] -->
+    <string name="supplier_information">Supplier Information</string>
+
+    <!-- Toast message if a new product was successfully entered into the database. [CHAR LIMIT=20] -->
+    <string name="new_product_saved">Product was saved successfully.</string>
+
+    <!-- Toast message if a new product wasn't successfully entered into the database. [CHAR LIMIT=20] -->
+    <string name="error_saving_new_product">Product was saved successfully.</string>
+
+    <!-- Toast message if an existing product was successfully updated. [CHAR LIMIT=20] -->
+    <string name="product_updated">Product was updated successfully.</string>
+
+    <!-- Toast message if an existing product wasn't successfully updated. [CHAR LIMIT=20] -->
+    <string name="error_updating_product">Error updating product.</string>
+
+    <!-- Toast message if no name for the product was entered. [CHAR LIMIT=20] -->
+    <string name="product_name_missing">Please enter product name.</string>
+
+    <!-- Toast message if no price for the product was entered. [CHAR LIMIT=20] -->
+    <string name="product_price_missing">Please enter product price.</string>
+
+    <!-- Toast message if an incorrect price for the product was entered. [CHAR LIMIT=20] -->
+    <string name="product_price_wrong">Price can\'t be negative or 0.</string>
+
+    <!-- Toast message if no quantity for the product was entered. [CHAR LIMIT=20] -->
+    <string name="product_quantity_missing">Please enter product quantity.</string>
+
+    <!-- Toast message if an incorrect price for the product was entered. [CHAR LIMIT=20] -->
+    <string name="product_quantity_wrong">Quantity can\'t be negative.</string>
+
+    <!-- Toast message if no supplier name for the product was entered. [CHAR LIMIT=20] -->
+    <string name="product_supplier_name_missing">Please enter supplier name.</string>
+
+    <!-- Toast message if no supplier name for the product was entered. [CHAR LIMIT=20] -->
+    <string name="product_supplier_contact_missing">Please enter supplier contact number.</string>
+
+    <!-- Default value for an unknown supplier name [CHAR LIMIT=10] -->
+    <string name="unknown_supplier_name">Unknown</string>
+
+    <!-- Default value for an unknown supplier contact [CHAR LIMIT=10] -->
+    <string name="unknown_supplier_contact">Unknown</string>
+
+    <!-- Message for the Alert Dialog shown when is about to quit edit without saving changes [CHAR LIMIT=30] -->
+    <string name="unsaved_changes_alert_message">Discard the changes and quit editing?</string>
+
+    <!-- Button for Alert Dialog discard changes [CHAR LIMIT=10] -->
+    <string name="unsaved_changes_discard_button">Discard</string>
+
+    <!-- Button for Alert Dialog don't discard changes [CHAR LIMIT=10] -->
+    <string name="unsaved_changes_dont_discard_button">Keep Editing</string>
+
+    <!-- Header for the Empty View[CHAR LIMIT=20] -->
+    <string name="empty_view_header">No products available!</string>
+
+    <!-- Text for the Empty View -->
+    <string name="empty_view_text">There are currently no products in the inventory. Press the
+        \"add product\"-button below to add products into the inventory.</string>
+
+    <!-- Label button to buy a product. [CHAR LIMIT=10] -->
+    <string name="buy_product">Buy</string>
+
+    <!-- Text when a product is available [CHAR LIMIT=10] -->
+    <string name="product_in_stock">Available: "<xliff:g example="5" id="productQuantity">%1$s</xliff:g>"</string>
+
+    <!-- Text when a product is out of stock [CHAR LIMIT=10] -->
+    <string name="product_out_of_stock">Out of Stock</string>
+
+    <!-- Toast message the buy button is clicked for an item that is currently not available. [CHAR LIMIT=20] -->
+    <string name="currently_not_available">"<xliff:g example="ice cream" id="productName">%1$s</xliff:g> is currently not available.</string>
+
+    <!-- Toast message wenn an item has been successfully pruchased. [CHAR LIMIT=20] -->
+    <string name="successful_purchase">You bought\: "<xliff:g example="ice cream" id="productName">%1$s</xliff:g>"</string>
+
+    <!-- Label button to delete a product. [CHAR LIMIT=10] -->
+    <string name="delete_product">Delete</string>
+
+    <!-- Alert dialogue to confirm deleting a product. [CHAR LIMIT=50] -->
+    <string name="delete_product_confirmation">Do you wish to permanently delete this product?</string>
+
+    <!-- Alert dialogue button to confirm deleting a product. [CHAR LIMIT=10] -->
+    <string name="delete_product_confirm">Delete</string>
+
+    <!-- Alert dialogue button to cancel deleting a product. [CHAR LIMIT=10] -->
+    <string name="delete_product_cancel">Cancel</string>
+
+    <!-- Toast if deleting a product wasn't successful. [CHAR LIMIT=30] -->
+    <string name="delete_product_failure">Error: the product couldn\'t be deleted.</string>
+
+    <!-- Toast if deleting a product was succesful. [CHAR LIMIT=30] -->
+    <string name="delete_product_success">Product deleted.</string>
+
+    <!-- Alert dialogue to raise quantity. [CHAR LIMIT=30] -->
+    <string name="raise_product_quantity">Raise quantity in stock by:</string>
+
+    <!-- Alert dialogue button to add quantity. [CHAR LIMIT=10] -->
+    <string name="add_product_quantity">Add</string>
+
+    <!-- Alert dialogue button to cancel adding quantity of a product. [CHAR LIMIT=10] -->
+    <string name="cancel_adding_product_quantity">Cancel</string>
+
+    <!-- Toast if invalid information was entered for raising the product quantity. [CHAR LIMIT=30] -->
+    <string name="add_quantity_invalid_input">Input can\'t be empty.</string>
+
+    <!-- Alert dialogue to raise quantity. [CHAR LIMIT=30] -->
+    <string name="lower_product_quantity">Lower quantity in stock by:</string>
+
+    <!-- Alert dialogue button to reduce quantity. [CHAR LIMIT=10] -->
+    <string name="reduce_product_quantity">Reduce</string>
+
+    <!-- Alert dialogue button to cancel reducing quantity of a product. [CHAR LIMIT=10] -->
+    <string name="cancel_lowering_product_quantity">Cancel</string>
+
+    <!-- Toast if invalid information was entered for lowering the product quantity. [CHAR LIMIT=30] -->
+    <string name="lower_quantity_invalid_input">Input can\'t be empty.</string>
+
+    <!-- Toast if amount by which the quantity shall be lowered is higher than actual quantity. [CHAR LIMIT=30] -->
+    <string name="quantity_cannot_be_below_zero">Invalid Input: Quantity can\'t be lower than 0.</string>
+
+    <!-- Toast if amount by which the quantity shall be lowered is higher than actual quantity. [CHAR LIMIT=32] -->
+    <string name="order_product_button">Order Product</string>
+
+    <!-- Toast shown if someone wants to contact the supplier without a number being stored. [CHAR LIMIT=32] -->
+    <string name="no_supplier_contact_saved">Please make sure that the contact number for the
+        supplier has been successfully saved.</string>
+
+    <!-- Toast shown if the contact number for the call couldn't be build successfully. [CHAR LIMIT=32] -->
+    <string name="error_contact_number">Error retrieving contact number. Please check stored number.</string>
+
+</resources>
