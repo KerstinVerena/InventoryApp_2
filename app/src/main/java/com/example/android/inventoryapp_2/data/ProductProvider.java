@@ -155,8 +155,7 @@ public class ProductProvider extends ContentProvider {
 
         getContext().getContentResolver().notifyChange(uri, null);
 
-        // Once we know the ID of the new row in the table,
-        // return the new URI with the ID appended to the end of it
+        // Return the new URI with the ID appended to the end of it
         return ContentUris.withAppendedId(uri, id);
     }
 
@@ -166,8 +165,15 @@ public class ProductProvider extends ContentProvider {
         //Get a writeable database.
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
+        // Check if a valiated uri was given.
+        if (uri == null) {
+            throw new IllegalArgumentException("Error erasing product");
+        }
+
         //Delete a single product from the inventory database.
         s = ProductEntry._ID + "=?";
+
+
         strings = new String[]{String.valueOf(ContentUris.parseId(uri))};
         getContext().getContentResolver().notifyChange(uri, null);
         return database.delete(ProductEntry.TABLE_NAME, s, strings);
@@ -209,8 +215,6 @@ public class ProductProvider extends ContentProvider {
                 throw new IllegalArgumentException("Product requires valid price");
             }
         }
-
-        // No need to check the breed, any value is valid (including null).
 
         // If there are no values to update, then don't try to update the database
         if (values.size() == 0) {

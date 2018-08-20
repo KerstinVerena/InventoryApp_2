@@ -33,9 +33,6 @@ import java.text.DecimalFormat;
 
 public class ProductCursorAdapter extends CursorAdapter {
 
-    public int productQuantity;
-
-
     /**
      * Constructs a new {@link ProductCursorAdapter}.
      *
@@ -100,7 +97,7 @@ public class ProductCursorAdapter extends CursorAdapter {
         String formattedPrice = formatPrice(productPrice) + " " +
                 context.getResources().getString(R.string.currency);
 
-        productQuantity = cursor.getInt(productQuantityColumnIndex);
+        final int productQuantity = cursor.getInt(productQuantityColumnIndex);
 
         //Create variables for the ID of the color of the buy-button, the text if a product is in
         // stock and different colors according to whether it is in stock or not.
@@ -145,13 +142,10 @@ public class ProductCursorAdapter extends CursorAdapter {
                 //Check if the item is still in stock.
                 if (isInStock) {
                     //If the item is still in check, sell one by calling the buyItem-method.
-                    buyItem(context, currentProductUri, isInStock);
-                    //Show a toast message so that the user know, he successfully bought the product.
-                    Toast.makeText(context, context.getString(R.string.successful_purchase,
-                            productName), Toast.LENGTH_SHORT).show();
+                    buyItem(context, currentProductUri, productQuantity, productName);
+                } else {
                     //Show a toast message to tell the user that the product is currently not
                     // available.
-                } else {
                     Toast.makeText(context, context.getString(R.string.currently_not_available,
                             productName), Toast.LENGTH_SHORT).show();
                 }
@@ -171,32 +165,34 @@ public class ProductCursorAdapter extends CursorAdapter {
     //A method to check whether a product is in stock (quantity > zero) or not. Returns a boolean.
     private boolean checkInStock(int quantity) {
         int iQuantity = quantity;
-        boolean isInStock;
 
         if (iQuantity > 0) {
-            return isInStock = true;
+            return true;
         } else {
-            return isInStock = false;
+            return false;
         }
     }
 
     //Handle selling a prodcut via the buy-button.
-    private void buyItem(Context context, Uri uri, boolean isInStock) {
+    @SuppressLint("StringFormatInvalid")
+    private void buyItem(Context context, Uri uri, int productQuantity, String productName) {
         //Reduce quantity by one
         productQuantity = productQuantity - 1;
-
-        //Prepare the to enter the new quantity into the database.
-        ProductDbHelper mDbHelper = new ProductDbHelper(context);
-
-        //Create and/or open a database and write into it.
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         //Enter the new quantity into the database.
         ContentValues cV = new ContentValues();
         cV.put(ProductRecord.ProductEntry.COLUMN_PRODUCT_QUANTITY, productQuantity);
         int rowsChanged = context.getContentResolver().update(uri, cV, null, null);
 
-        //Check if the item is still in stock by calling the isInStock method.
-        isInStock = checkInStock(productQuantity);
+        //Check if the content was updated properly if not give an error message.
+        if (rowsChanged == 0) {
+            //Show a toast message so that the user know, he successfully bought the product.
+            Toast.makeText(context, context.getString(R.string.error_buying_product,
+                    productName), Toast.LENGTH_SHORT).show();
+        } else {
+            //else show a string to tell the user that the item was successfully purchased.
+            Toast.makeText(context, context.getString(R.string.successful_purchase,
+                    productName), Toast.LENGTH_SHORT).show();
+        }
     }
 }

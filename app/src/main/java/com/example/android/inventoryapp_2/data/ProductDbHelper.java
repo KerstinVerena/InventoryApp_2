@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class ProductDbHelper extends SQLiteOpenHelper {
-    public static final String LOG_TAG = ProductDbHelper.class.getSimpleName();
+    // --Commented out by Inspection (20.08.2018 19:43):public static final String LOG_TAG = ProductDbHelper.class.getSimpleName();
 
     //The name of the database.
     private static final String DATABASE_NAME = "store.db";

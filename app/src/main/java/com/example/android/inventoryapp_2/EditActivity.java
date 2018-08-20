@@ -130,6 +130,7 @@ public class EditActivity extends AppCompatActivity implements
 
         //Implement the button to delete a product.
         Button deleteProductButton = findViewById(R.id.delete_product_button);
+
         deleteProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,20 +157,25 @@ public class EditActivity extends AppCompatActivity implements
 
         //Implement the button to contact the supplier for ordering more product supplies.
         final Button contactSupplierButton = findViewById(R.id.contact_supplier_button);
-        contactSupplierButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Check if a supplier contact number has been entered. If not, return early.
-                if (productSupplierContact == null) {
-                    Toast.makeText(getApplicationContext(), getString(R.string.no_supplier_contact_saved),
-                            Toast.LENGTH_SHORT).show();
-                    return;
-                } else {
-                    contactSupplier(productSupplierContact);
-                }
 
-            }
-        });
+        if(mCurrentProductUri == null) {
+            contactSupplierButton.setVisibility(View.GONE);
+        } else {
+            contactSupplierButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Check if a supplier contact number has been entered. If not, return early.
+                    if (productSupplierContact == null) {
+                        Toast.makeText(getApplicationContext(), getString(R.string.no_supplier_contact_saved),
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    } else {
+                        contactSupplier(productSupplierContact);
+                    }
+
+                }
+            });
+        }
 
     }
 
@@ -211,12 +217,6 @@ public class EditActivity extends AppCompatActivity implements
         productSupplierName = productSupplierName.substring(0, 1).toUpperCase() +
                 productSupplierName.substring(1).toLowerCase();
 
-
-        //Prepare the to enter the user input into the database.
-        ProductDbHelper mDbHelper = new ProductDbHelper(this);
-
-        //Create and/or open a database and write into it.
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
         ContentValues cV = new ContentValues();
 

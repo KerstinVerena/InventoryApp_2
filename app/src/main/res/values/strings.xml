@@ -122,7 +122,7 @@
     <string name="currently_not_available">"<xliff:g example="ice cream" id="productName">%1$s</xliff:g> is currently not available.</string>
 
     <!-- Toast message wenn an item has been successfully pruchased. [CHAR LIMIT=20] -->
-    <string name="successful_purchase">You bought\: "<xliff:g example="ice cream" id="productName">%1$s</xliff:g>"</string>
+    <string name="successful_purchase" formatted="true">You bought\: "<xliff:g example="ice cream" id="productName">%1$s</xliff:g>"</string>
 
     <!-- Label button to delete a product. [CHAR LIMIT=10] -->
     <string name="delete_product">Delete</string>
@@ -166,17 +166,20 @@
     <!-- Toast if invalid information was entered for lowering the product quantity. [CHAR LIMIT=30] -->
     <string name="lower_quantity_invalid_input">Input can\'t be empty.</string>
 
-    <!-- Toast if amount by which the quantity shall be lowered is higher than actual quantity. [CHAR LIMIT=30] -->
+    <!-- Toast if amount by which the quantity shall be lowered is higher than actual quantity. [CHAR LIMIT=20] -->
     <string name="quantity_cannot_be_below_zero">Invalid Input: Quantity can\'t be lower than 0.</string>
 
-    <!-- Toast if amount by which the quantity shall be lowered is higher than actual quantity. [CHAR LIMIT=32] -->
+    <!-- Toast if amount by which the quantity shall be lowered is higher than actual quantity. [CHAR LIMIT=20] -->
     <string name="order_product_button">Order Product</string>
 
-    <!-- Toast shown if someone wants to contact the supplier without a number being stored. [CHAR LIMIT=32] -->
+    <!-- Toast shown if someone wants to contact the supplier without a number being stored. [CHAR LIMIT=20] -->
     <string name="no_supplier_contact_saved">Please make sure that the contact number for the
         supplier has been successfully saved.</string>
 
-    <!-- Toast shown if the contact number for the call couldn't be build successfully. [CHAR LIMIT=32] -->
+    <!-- Toast shown if the contact number for the call couldn't be build successfully. [CHAR LIMIT=20] -->
     <string name="error_contact_number">Error retrieving contact number. Please check stored number.</string>
+
+    <!-- Toast shown if after buying an item the quanity was not successfully decreased. [CHAR LIMIT=20] -->
+    <string name="error_buying_product" formatted="true">Error buying "<xliff:g example="ice cream" id="productName">%1$s</xliff:g>.</string>
 
 </resources>
