@@ -152,7 +152,7 @@
     <string name="cancel_adding_product_quantity">Cancel</string>
 
     <!-- Toast if invalid information was entered for raising the product quantity. [CHAR LIMIT=30] -->
-    <string name="add_quantity_invalid_input">Input can\'t be empty.</string>
+    <string name="add_quantity_invalid_input">Please enter valid number.</string>
 
     <!-- Alert dialogue to raise quantity. [CHAR LIMIT=30] -->
     <string name="lower_product_quantity">Lower quantity in stock by:</string>
@@ -164,7 +164,7 @@
     <string name="cancel_lowering_product_quantity">Cancel</string>
 
     <!-- Toast if invalid information was entered for lowering the product quantity. [CHAR LIMIT=30] -->
-    <string name="lower_quantity_invalid_input">Input can\'t be empty.</string>
+    <string name="lower_quantity_invalid_input">Please enter valid number.</string>
 
     <!-- Toast if amount by which the quantity shall be lowered is higher than actual quantity. [CHAR LIMIT=20] -->
     <string name="quantity_cannot_be_below_zero">Invalid Input: Quantity can\'t be lower than 0.</string>
@@ -182,4 +182,12 @@
     <!-- Toast shown if after buying an item the quanity was not successfully decreased. [CHAR LIMIT=20] -->
     <string name="error_buying_product" formatted="true">Error buying "<xliff:g example="ice cream" id="productName">%1$s</xliff:g>.</string>
 
+    <!-- Toast shown if a product price not an integer has been entered. [CHAR LIMIT=20] -->
+    <string name="invalid_product_price">Please enter a valid product price.</string>
+
+    <!-- Toast shown if a product price not an integer has been entered. [CHAR LIMIT=20] -->
+    <string name="invalid_product_quantity">Please enter a valid product quantity.</string>
+
+    <!-- Toast shown if the product quantity has been fallen blow 0. [CHAR LIMIT=20] -->
+    <string name="product_quantity_below_zero">Error storing product quantity. Reset quantity.</string>
 </resources>

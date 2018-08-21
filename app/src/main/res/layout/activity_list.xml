@@ -10,7 +10,8 @@
     <ListView
         android:id="@+id/inventory_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="@dimen/zero_dimen"
+        android:layout_weight="2" />
 
     <!-- Empty view for the list -->
     <RelativeLayout
@@ -39,8 +40,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/zero_dimen"
-        android:layout_weight="1">
+        android:layout_height="wrap_content">
     <Button
         android:id="@+id/add_product_button"
         android:layout_width="match_parent"

@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -25,7 +24,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.android.inventoryapp_2.data.ProductDbHelper;
 import com.example.android.inventoryapp_2.data.ProductRecord;
 import com.example.android.inventoryapp_2.data.ProductRecord.ProductEntry;
 
@@ -58,7 +56,7 @@ public class EditActivity extends AppCompatActivity implements
     //EditText field to enter the product's price.
     private EditText mPriceEditText;
     //EditText field to enter the product's quantity.
-    private TextView mQuantityEditText;
+    private TextView mQuantityTextView;
     //EditText field to enter the name of the product's supplier.
     private EditText mSupplierNameEditText;
     //EditText field to enter the phone number of the product's supplier.
@@ -67,6 +65,9 @@ public class EditActivity extends AppCompatActivity implements
     private Boolean mPassedSanityCheck = false;
     //Boolean to check if a product has been changed.
     private boolean mProductHasChanged = false;
+
+    //Create a static variable to store the quantity in case the device is rotated.
+    public static String enteredQuantiy;
 
     //Set up an onTouchListener to check if the user has changed any of the fields and if this is
     //the case set mProdcutHasChanged to true.
@@ -82,6 +83,7 @@ public class EditActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit);
+
 
         //Check which intent was used to get to the activity, and retrieve data in case it was
         // provided.
@@ -106,7 +108,7 @@ public class EditActivity extends AppCompatActivity implements
 
         mNameEditText = findViewById(R.id.product_name);
         mPriceEditText = findViewById(R.id.product_price);
-        mQuantityEditText = findViewById(R.id.product_quantity);
+        mQuantityTextView = findViewById(R.id.product_quantity);
         mSupplierNameEditText = findViewById(R.id.product_supplier);
         mSupplierContactEditText = findViewById(R.id.product_supplier_contact);
 
@@ -114,7 +116,7 @@ public class EditActivity extends AppCompatActivity implements
         // leafing the EditActivity.
         mNameEditText.setOnTouchListener(mTouchListener);
         mPriceEditText.setOnTouchListener(mTouchListener);
-        mQuantityEditText.setOnTouchListener(mTouchListener);
+        mQuantityTextView.setOnTouchListener(mTouchListener);
         mSupplierNameEditText.setOnTouchListener(mTouchListener);
         mSupplierContactEditText.setOnTouchListener(mTouchListener);
 
@@ -177,20 +179,41 @@ public class EditActivity extends AppCompatActivity implements
             });
         }
 
+        //Load the quantity from a saved instance and show it in the mQuantityTextView after
+        // rotating the device.
+        if (savedInstanceState != null) {
+            productQuantity = savedInstanceState.getInt(enteredQuantiy);
+
+            if (productQuantity > 0) {
+                mQuantityTextView.setText(Integer.toString(productQuantity));
+                mProductHasChanged = true;
+            }
+        }
+    }
+
+    //Save entered, not saved quantity in case the device is rotated.
+    @Override
+    public void onSaveInstanceState (Bundle outState){
+        outState.putInt(enteredQuantiy, productQuantity);
+        super.onSaveInstanceState(outState);
+    }
+
+    //Restore entered quantity in case the device is rotated before it is saved.
+    @Override
+    public void onRestoreInstanceState (Bundle savedInstanceState){
+        super.onRestoreInstanceState(savedInstanceState);
+        productQuantity = savedInstanceState.getInt(enteredQuantiy);
     }
 
     // Get the Strings and integers from the information entered into the EditText fields.
     private void saveProduct() {
         String productName = mNameEditText.getText().toString().trim();
         String productPriceInput = mPriceEditText.getText().toString().trim();
-        String productQuantityInput = mQuantityEditText.getText().toString().trim();
+        String productQuantityInput = mQuantityTextView.getText().toString().trim();
         String productSupplierName = mSupplierNameEditText.getText().toString().trim();
         productSupplierContact = mSupplierContactEditText.getText().toString().trim();
 
-
         int productPrice = 0;
-        productQuantity = 0;
-
 
         sanityCheck(productName, productPriceInput, productPrice, productQuantityInput,
                 productSupplierName, productSupplierContact);
@@ -202,6 +225,7 @@ public class EditActivity extends AppCompatActivity implements
 
         //Parse the product price and quantity into integers.
         productPrice = Integer.parseInt(productPriceInput);
+
         productQuantity = Integer.parseInt(productQuantityInput);
 
 
@@ -277,6 +301,7 @@ public class EditActivity extends AppCompatActivity implements
         }
     }
 
+
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle bundle) {
@@ -333,7 +358,7 @@ public class EditActivity extends AppCompatActivity implements
             //Update the views on the screen with the received data.
             mNameEditText.setText(productName);
             mPriceEditText.setText(Integer.toString(productPrice));
-            mQuantityEditText.setText(Integer.toString(productQuantity));
+            mQuantityTextView.setText(Integer.toString(productQuantity));
             mSupplierNameEditText.setText(productSupplierName);
             mSupplierContactEditText.setText(productSupplierContact);
         }
@@ -345,7 +370,7 @@ public class EditActivity extends AppCompatActivity implements
         //Clear out data from all the fields if the loader is invalidated.
         mNameEditText.setText("");
         mPriceEditText.setText("");
-        mQuantityEditText.setText("");
+        mQuantityTextView.setText("");
         mSupplierNameEditText.setText("");
         mSupplierContactEditText.setText("");
     }
@@ -369,8 +394,15 @@ public class EditActivity extends AppCompatActivity implements
             return;
         }
 
-        //Parse the product price into an integer.
-        productPrice = Integer.parseInt(productPriceInput);
+        //Parse the product price into an integer. Throw an exception when an invalid
+        // number is entered.
+        try {
+            productPrice = Integer.parseInt(productPriceInput);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, R.string.invalid_product_price, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 
         //Check if the price is over 0. If not, return early without storing the product.
         if (productPrice <= 0) {
@@ -385,8 +417,13 @@ public class EditActivity extends AppCompatActivity implements
             return;
         }
 
-        //Parse the product price into an integer.
-        productQuantity = Integer.parseInt(productQuantityInput);
+        //Parse product quantity into an integer. Return early if parsing the values it not possible.
+        try {
+            productQuantity = Integer.parseInt(productQuantityInput);
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, R.string.invalid_product_price, Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         //Make sure the quantity is not a negative value. If it is, return early without storing the product.
         if (productQuantity < 0) {
@@ -540,7 +577,7 @@ public class EditActivity extends AppCompatActivity implements
             //If the product doesn't exist yet, just set all fields to zero.
             mNameEditText.setText("");
             mPriceEditText.setText("");
-            mQuantityEditText.setText("");
+            mQuantityTextView.setText("");
             mSupplierNameEditText.setText("");
             mSupplierContactEditText.setText("");
         }
@@ -580,7 +617,7 @@ public class EditActivity extends AppCompatActivity implements
                     return;
                 }
                 addQuantity(addedQuantity);
-                mQuantityEditText.setText(Integer.toString(productQuantity));
+                mQuantityTextView.setText(Integer.toString(productQuantity));
 
                 //Set the boolean mProductHasChanged to true so that the SaveChanges show up should
                 // the user leave the Activity without saving.
@@ -645,7 +682,7 @@ public class EditActivity extends AppCompatActivity implements
                 }
 
                 lowerQuantity(reducedQuantity);
-                mQuantityEditText.setText(Integer.toString(productQuantity));
+                mQuantityTextView.setText(Integer.toString(productQuantity));
 
                 //Set the boolean mProductHasChanged to true so that the SaveChanges show up should
                 // the user leave the Activity without saving.
@@ -672,6 +709,14 @@ public class EditActivity extends AppCompatActivity implements
 
     int addQuantity(int addedQuantity) {
         productQuantity += addedQuantity;
+
+        //Check if the product quantity has fallen below zero because the integer was pushed over
+        // its max values and if so, reset it to 1.
+        if (productQuantity < 0) {
+            Toast.makeText(this, R.string.product_quantity_below_zero, Toast.LENGTH_SHORT)
+                    .show();
+            productQuantity = 1;
+        }
         return productQuantity;
     }
 
@@ -681,7 +726,6 @@ public class EditActivity extends AppCompatActivity implements
 
         productQuantity -= loweredQuantity;
         return productQuantity;
-
     }
 
     //Open a phone app with the number stored for the supplier. Use dial instead of call so that the
